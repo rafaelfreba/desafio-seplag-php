@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Unidade;
-use App\Http\Requests\UnidadeRequest;
-use App\Http\Resources\UnidadeCollection;
-use App\Http\Resources\UnidadeResource;
 use App\Models\Endereco;
-use Illuminate\Database\Eloquent\Collection;
+use App\Http\Requests\UnidadeRequest;
+use App\Http\Resources\UnidadeResource;
+use App\Http\Resources\UnidadeCollection;
 
 class UnidadeController extends Controller
 {
@@ -21,11 +20,11 @@ class UnidadeController extends Controller
      *         response=200,
      *         description="OK"
      *     )
-     * )      
+     * )
      */
     public function index(Unidade $unidades): UnidadeCollection
     {
-        return new UnidadeCollection($unidades::with(['enderecos', 'enderecos.cidade'])->get());
+        return new UnidadeCollection($unidades::with(['enderecos', 'enderecos.cidade'])->paginate(1));
     }
 
     /**
