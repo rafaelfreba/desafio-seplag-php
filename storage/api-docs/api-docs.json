@@ -1,0 +1,235 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Desafio técnico SEPLAG para desenvolvedor PHP",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api": {},
+        "/api/unidades": {
+            "get": {
+                "summary": "Lista todas as unidades",
+                "description": "Retorna todas as unidades cadastradas no sistema.",
+                "operationId": "0c9baef10d156dabf3eeb1740c369edf",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Erro na requisição"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Cadastra uma nova unidade",
+                "description": "Cria uma nova unidade com os dados fornecidos.",
+                "operationId": "630809295267e4bd587485d8a29519a2",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "unid_nome": {
+                                        "description": "Nome da unidade",
+                                        "type": "string",
+                                        "example": "Unidade A"
+                                    },
+                                    "unid_sigla": {
+                                        "description": "Sigla da unidade",
+                                        "type": "string",
+                                        "example": "AAA"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "unid_nome": {
+                                            "description": "Nome da unidade",
+                                            "type": "string",
+                                            "example": "Unidade A"
+                                        },
+                                        "unid_sigla": {
+                                            "description": "Sigla da unidade",
+                                            "type": "string",
+                                            "example": "AAA"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro na requisição (dados inválidos)"
+                    }
+                }
+            }
+        },
+        "/api/unidades/{id}": {
+            "get": {
+                "summary": "Exibe uma unidade especificada",
+                "description": "Retorna os detalhes de uma unidade com o ID fornecido.",
+                "operationId": "460b6c13458ccbe2b8584cd7097d9a0a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da unidade",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "unid_nome": {
+                                            "description": "Nome da unidade",
+                                            "type": "string",
+                                            "example": "Unidade A"
+                                        },
+                                        "unid_sigla": {
+                                            "description": "Sigla da unidade",
+                                            "type": "string",
+                                            "example": "AAA"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Unidade não encontrada"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Atualiza uma unidade especificada",
+                "description": "Atualiza os dados de uma unidade existente com os dados fornecidos.",
+                "operationId": "323706e2f822d031fdeebebd9013f931",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da unidade",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "unid_nome": {
+                                        "description": "Nome da unidade",
+                                        "type": "string",
+                                        "example": "Unidade A"
+                                    },
+                                    "unid_sigla": {
+                                        "description": "Sigla da unidade",
+                                        "type": "string",
+                                        "example": "AAA"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "unid_nome": {
+                                            "description": "Nome da unidade",
+                                            "type": "string",
+                                            "example": "Unidade A"
+                                        },
+                                        "unid_sigla": {
+                                            "description": "Sigla da unidade",
+                                            "type": "string",
+                                            "example": "AAA"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Erro na requisição (dados inválidos)"
+                    },
+                    "404": {
+                        "description": "No query results for model [App\\\\Models\\\\Unidade] [id]"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove uma unidade especificada",
+                "description": "Remove a unidade com o ID fornecido.",
+                "operationId": "a52327e7319d99b373e840cef59c1afa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID da unidade",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "unid_nome": {
+                                            "description": "Nome da unidade",
+                                            "type": "string",
+                                            "example": "Unidade A"
+                                        },
+                                        "unid_sigla": {
+                                            "description": "Sigla da unidade",
+                                            "type": "string",
+                                            "example": "AAA"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No query results for model [App\\\\Models\\\\Unidade] [id]"
+                    }
+                }
+            }
+        }
+    }
+}
