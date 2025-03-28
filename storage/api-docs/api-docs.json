@@ -8,19 +8,22 @@
         "/api": {},
         "/api/unidades": {
             "get": {
+                "tags": [
+                    "Unidades"
+                ],
                 "summary": "Lista todas as unidades",
                 "description": "Retorna todas as unidades cadastradas no sistema.",
                 "operationId": "0c9baef10d156dabf3eeb1740c369edf",
                 "responses": {
                     "200": {
                         "description": "OK"
-                    },
-                    "400": {
-                        "description": "Erro na requisição"
                     }
                 }
             },
             "post": {
+                "tags": [
+                    "Unidades"
+                ],
                 "summary": "Cadastra uma nova unidade",
                 "description": "Cria uma nova unidade com os dados fornecidos.",
                 "operationId": "630809295267e4bd587485d8a29519a2",
@@ -39,6 +42,31 @@
                                         "description": "Sigla da unidade",
                                         "type": "string",
                                         "example": "AAA"
+                                    },
+                                    "end_tipo_logradouro": {
+                                        "description": "Tipo de logradouro",
+                                        "type": "string",
+                                        "example": "Avenida"
+                                    },
+                                    "end_logradouro": {
+                                        "description": "Logradouro",
+                                        "type": "string",
+                                        "example": "Alzira Santana"
+                                    },
+                                    "end_numero": {
+                                        "description": "Número",
+                                        "type": "integer",
+                                        "example": "100"
+                                    },
+                                    "end_bairro": {
+                                        "description": "Bairro",
+                                        "type": "integer",
+                                        "example": "Centro"
+                                    },
+                                    "cidade_id": {
+                                        "description": "Id da Cidade",
+                                        "type": "integer",
+                                        "example": "1"
                                     }
                                 },
                                 "type": "object"
@@ -62,21 +90,46 @@
                                             "description": "Sigla da unidade",
                                             "type": "string",
                                             "example": "AAA"
+                                        },
+                                        "end_tipo_logradouro": {
+                                            "description": "Tipo de logradouro",
+                                            "type": "string",
+                                            "example": "Avenida"
+                                        },
+                                        "end_logradouro": {
+                                            "description": "Logradouro",
+                                            "type": "string",
+                                            "example": "Alzira Santana"
+                                        },
+                                        "end_numero": {
+                                            "description": "Número",
+                                            "type": "integer",
+                                            "example": "100"
+                                        },
+                                        "end_bairro": {
+                                            "description": "Bairro",
+                                            "type": "integer",
+                                            "example": "Centro"
+                                        },
+                                        "cidade_id": {
+                                            "description": "Id da Cidade",
+                                            "type": "integer",
+                                            "example": "1"
                                         }
                                     },
                                     "type": "object"
                                 }
                             }
                         }
-                    },
-                    "400": {
-                        "description": "Erro na requisição (dados inválidos)"
                     }
                 }
             }
         },
         "/api/unidades/{id}": {
             "get": {
+                "tags": [
+                    "Unidades"
+                ],
                 "summary": "Exibe uma unidade especificada",
                 "description": "Retorna os detalhes de uma unidade com o ID fornecido.",
                 "operationId": "460b6c13458ccbe2b8584cd7097d9a0a",
@@ -107,19 +160,44 @@
                                             "description": "Sigla da unidade",
                                             "type": "string",
                                             "example": "AAA"
+                                        },
+                                        "end_tipo_logradouro": {
+                                            "description": "Tipo de logradouro",
+                                            "type": "string",
+                                            "example": "Avenida"
+                                        },
+                                        "end_logradouro": {
+                                            "description": "Logradouro",
+                                            "type": "string",
+                                            "example": "Alzira Santana"
+                                        },
+                                        "end_numero": {
+                                            "description": "Número",
+                                            "type": "integer",
+                                            "example": "100"
+                                        },
+                                        "end_bairro": {
+                                            "description": "Bairro",
+                                            "type": "integer",
+                                            "example": "Centro"
+                                        },
+                                        "cidade_id": {
+                                            "description": "Id da Cidade",
+                                            "type": "integer",
+                                            "example": "1"
                                         }
                                     },
                                     "type": "object"
                                 }
                             }
                         }
-                    },
-                    "404": {
-                        "description": "Unidade não encontrada"
                     }
                 }
             },
             "put": {
+                "tags": [
+                    "Unidades"
+                ],
                 "summary": "Atualiza uma unidade especificada",
                 "description": "Atualiza os dados de uma unidade existente com os dados fornecidos.",
                 "operationId": "323706e2f822d031fdeebebd9013f931",
@@ -149,6 +227,31 @@
                                         "description": "Sigla da unidade",
                                         "type": "string",
                                         "example": "AAA"
+                                    },
+                                    "end_tipo_logradouro": {
+                                        "description": "Tipo de logradouro",
+                                        "type": "string",
+                                        "example": "Avenida"
+                                    },
+                                    "end_logradouro": {
+                                        "description": "Logradouro",
+                                        "type": "string",
+                                        "example": "Alzira Santana"
+                                    },
+                                    "end_numero": {
+                                        "description": "Número",
+                                        "type": "integer",
+                                        "example": "100"
+                                    },
+                                    "end_bairro": {
+                                        "description": "Bairro",
+                                        "type": "integer",
+                                        "example": "Centro"
+                                    },
+                                    "cidade_id": {
+                                        "description": "Id da Cidade",
+                                        "type": "integer",
+                                        "example": "1"
                                     }
                                 },
                                 "type": "object"
@@ -172,6 +275,31 @@
                                             "description": "Sigla da unidade",
                                             "type": "string",
                                             "example": "AAA"
+                                        },
+                                        "end_tipo_logradouro": {
+                                            "description": "Tipo de logradouro",
+                                            "type": "string",
+                                            "example": "Avenida"
+                                        },
+                                        "end_logradouro": {
+                                            "description": "Logradouro",
+                                            "type": "string",
+                                            "example": "Alzira Santana"
+                                        },
+                                        "end_numero": {
+                                            "description": "Número",
+                                            "type": "integer",
+                                            "example": "100"
+                                        },
+                                        "end_bairro": {
+                                            "description": "Bairro",
+                                            "type": "integer",
+                                            "example": "Centro"
+                                        },
+                                        "cidade_id": {
+                                            "description": "Id da Cidade",
+                                            "type": "integer",
+                                            "example": "1"
                                         }
                                     },
                                     "type": "object"
@@ -179,15 +307,15 @@
                             }
                         }
                     },
-                    "400": {
-                        "description": "Erro na requisição (dados inválidos)"
-                    },
                     "404": {
                         "description": "No query results for model [App\\\\Models\\\\Unidade] [id]"
                     }
                 }
             },
             "delete": {
+                "tags": [
+                    "Unidades"
+                ],
                 "summary": "Remove uma unidade especificada",
                 "description": "Remove a unidade com o ID fornecido.",
                 "operationId": "a52327e7319d99b373e840cef59c1afa",
@@ -204,26 +332,7 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "OK",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "unid_nome": {
-                                            "description": "Nome da unidade",
-                                            "type": "string",
-                                            "example": "Unidade A"
-                                        },
-                                        "unid_sigla": {
-                                            "description": "Sigla da unidade",
-                                            "type": "string",
-                                            "example": "AAA"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "OK"
                     },
                     "404": {
                         "description": "No query results for model [App\\\\Models\\\\Unidade] [id]"
@@ -231,5 +340,11 @@
                 }
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "Unidades",
+            "description": "Unidades"
+        }
+    ]
 }
