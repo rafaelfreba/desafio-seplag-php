@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Pessoa extends Model
@@ -15,14 +16,14 @@ class Pessoa extends Model
         'pes_data_nascimento',
         'pes_sexo',
         'pes_mae',
-        'pes_pai',
-        
+        'pes_pai'
     ];
 
-    public function fotoPessoa(): HasOne
+    public function fotos(): HasMany
     {
-        return $this->hasOne(FotoPessoa::class);
+        return $this->hasMany(FotoPessoa::class);
     }
+
 
     public function enderecos(): BelongsToMany
     {
@@ -36,6 +37,11 @@ class Pessoa extends Model
 
     public function servidorEfetivo(): HasOne
     {
-        return $this->hasOne(EfetivoServidor::class);
+        return $this->hasOne(EfetivoServidor::class, 'pessoa_id', 'id');
+    }
+
+    public function lotacoes(): HasMany
+    {
+        return $this->hasMany(Lotacao::class);
     }
 }

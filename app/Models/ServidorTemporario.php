@@ -17,6 +17,6 @@ class ServidorTemporario extends Model
 
     public function pessoa(): BelongsTo
     {
-        return $this->belongsTo(Pessoa::class, 'pes_id');
+        return $this->belongsTo(Pessoa::class);
     }
 }

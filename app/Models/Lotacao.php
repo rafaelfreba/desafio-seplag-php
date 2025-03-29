@@ -19,11 +19,11 @@ class Lotacao extends Model
 
     public function pessoa(): BelongsTo
     {
-        return $this->belongsTo(Pessoa::class, 'pes_id');
+        return $this->belongsTo(Pessoa::class);
     }
 
     public function unidade(): BelongsTo
     {
-        return $this->belongsTo(Unidade::class, 'unid_id');
+        return $this->belongsTo(Unidade::class);
     }
 }
