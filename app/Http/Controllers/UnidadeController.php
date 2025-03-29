@@ -7,6 +7,8 @@ use App\Models\Endereco;
 use App\Http\Requests\UnidadeRequest;
 use App\Http\Resources\UnidadeResource;
 use App\Http\Resources\UnidadeCollection;
+use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class UnidadeController extends Controller
 {
@@ -24,7 +26,7 @@ class UnidadeController extends Controller
      */
     public function index(Unidade $unidades): UnidadeCollection
     {
-        return new UnidadeCollection($unidades::with(['enderecos', 'enderecos.cidade'])->paginate(1));
+        return new UnidadeCollection($unidades::with(['enderecos', 'enderecos.cidade'])->paginate(5));
     }
 
     /**
@@ -129,7 +131,7 @@ class UnidadeController extends Controller
      *             mediaType="application/json",
      *             @OA\Schema(
      *                 type="object",
-    *                 @OA\Property(property="unid_nome", type="string", description="Nome da unidade", example="Unidade A"),
+     *                 @OA\Property(property="unid_nome", type="string", description="Nome da unidade", example="Unidade A"),
      *                 @OA\Property(property="unid_sigla", type="string", description="Sigla da unidade", example="AAA"),
      *                 @OA\Property(property="end_tipo_logradouro", type="string", description="Tipo de logradouro", example="Avenida"),
      *                 @OA\Property(property="end_logradouro", type="string", description="Logradouro", example="Alzira Santana"),
