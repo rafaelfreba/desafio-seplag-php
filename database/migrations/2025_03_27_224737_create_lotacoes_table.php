@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('lotacoes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pessoa_id')->constrained('pessoas');
-            $table->foreignId('unid_id')->constrained('unidades');
+            $table->foreignId('unidade_id')->constrained('unidades');
             $table->date('lot_data_lotacao');
-            $table->date('lot_data_remocao');
+            $table->date('lot_data_remocao')->nullable();
             $table->string('lot_portaria', 100);
             $table->timestamps();
         });
