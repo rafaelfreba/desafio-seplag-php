@@ -16,14 +16,9 @@ class CidadeFactory extends Factory
      */
     public function definition(): array
     {
-        $cidades = [
-            'Cuiabá',
-            'Várzea Grande',
-            'Rondonópolis'
-        ];
-
         return [
-            'cid_nome' => fake()->unique()->randomElement($cidades)
+            'cid_nome' => 'CUIABÁ',
+            'cid_uf' => 'MT'
         ];
     }
 }
