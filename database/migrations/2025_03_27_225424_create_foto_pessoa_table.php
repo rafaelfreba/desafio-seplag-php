@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fotos_pessoas', function (Blueprint $table) {
+        Schema::create('foto_pessoa', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pessoa_id')->constrained('pessoas');
-            $table->date('fp_data');
-            $table->string('fp_bucket', 50);
-            $table->string('fp_hash', 50);
+            $table->date('fp_data')->nullable();
+            $table->string('fp_bucket', 50)->nullable();
+            $table->string('fp_hash', 50)->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fotos_pessoas');
+        Schema::dropIfExists('foto_pessoa');
     }
 };
