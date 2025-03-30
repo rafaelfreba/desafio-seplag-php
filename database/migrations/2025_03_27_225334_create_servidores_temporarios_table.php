@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pessoa_id')->constrained('pessoas');
             $table->date('st_data_admissao');
-            $table->date('st_data_demissao');
+            $table->date('st_data_demissao')->nullable();
             $table->timestamps();
         });
     }
