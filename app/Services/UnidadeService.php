@@ -36,7 +36,7 @@ class UnidadeService
 
             Log::error('Erro na inserção de unidade: ' . $th->getMessage());
 
-            return ['message' => 'Erro na inserção de unidade'];
+            return ['mensagem' => 'Erro na inserção de unidade'];
         }
     }
 
@@ -71,9 +71,9 @@ class UnidadeService
 
         } catch (\Throwable $th) {
 
-            Log::error('Erro na inserção de unidade: ' . $th->getMessage());
+            Log::error('Erro na atualização de unidade: ' . $th->getMessage());
 
-            return ['message' => 'Erro na inserção de unidade'];
+            return ['mensagem' => 'Erro na atualização de unidade'];
         }
     }
 }
