@@ -19,29 +19,28 @@ class Pessoa extends Model
         'pes_pai'
     ];
 
-    public function fotos(): HasMany
+    public function servidorEfetivo(): HasOne
     {
-        return $this->hasMany(FotoPessoa::class);
+        return $this->hasOne(EfetivoServidor::class, 'pessoa_id', 'id');
     }
 
+    public function servidorTemporario(): HasOne
+    {
+        return $this->hasOne(ServidorTemporario::class, 'pessoa_id', 'id');
+    }
 
     public function enderecos(): BelongsToMany
     {
         return $this->belongsToMany(Endereco::class);
     }
 
-    public function servidorTemporario(): HasOne
-    {
-        return $this->hasOne(ServidorTemporario::class);
-    }
-
-    public function servidorEfetivo(): HasOne
-    {
-        return $this->hasOne(EfetivoServidor::class, 'pessoa_id', 'id');
-    }
-
     public function lotacoes(): HasMany
     {
         return $this->hasMany(Lotacao::class);
+    }
+
+    public function fotos(): HasMany
+    {
+        return $this->hasMany(FotoPessoa::class);
     }
 }
