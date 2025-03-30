@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EfetivoServidorRequest extends FormRequest
+class ServidorRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -16,7 +16,9 @@ class EfetivoServidorRequest extends FormRequest
     {
         return [
             //servidor efetivo
-            'se_matricula' => ['required', 'string', 'min:1', 'max:20'],
+            'se_matricula' => [request()->filled('se_matricula') ? 'required' : 'nullable', 'string', 'min:1', 'max:20'],
+            'st_data_admissao' => [request()->filled('se_matricula') ? 'nullable' : 'required','date', 'before_or_equal:' . date('Y-m-d')],
+            'st_data_demissao' => ['nullable','date','after_or_equal:lot_data_admissao', 'after:st_data_demissao'],
             //pessoa
             'pes_nome' => ['required', 'string', 'min:1', 'max:200'],
             'pes_data_nascimento' => ['required', 'date', 'after: 1908-01-01', 'before:' . date('Y-m-d')],
@@ -40,5 +42,10 @@ class EfetivoServidorRequest extends FormRequest
             'fp_bucket' => ['nullable', 'string', 'min:1', 'max:100'],
             'fp_hash' => ['nullable', 'string', 'min:1', 'max:100']
         ];
+    }
+
+    protected function retornaRegraParaTipoServidor($tipoServidor)
+    {
+        return ($tipoServidor == 'efetivo' ? 'required' : 'nullable');
     }
 }

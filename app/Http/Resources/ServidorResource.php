@@ -5,18 +5,20 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class EfetivoServidorResource extends JsonResource
+class ServidorResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->pessoa->id,
+            'id' => $this->id,
             'pes_nome' => $this->pessoa ? $this->pessoa->pes_nome : null,
             'pes_data_nascimento' => $this->pessoa ? $this->pessoa->pes_data_nascimento : null,
             'pes_sexo' => $this->pessoa ? $this->pessoa->pes_sexo : null,
             'pes_mae' => $this->pessoa ? $this->pessoa->pes_mae : null,
             'pes_pai' => $this->pessoa ? $this->pessoa->pes_pai : null,
             'se_matricula' => $this->se_matricula ?? null,
+            'st_data_admissao' => $this->st_data_admissao ?? null,
+            'st_data_demissao' => $this->st_data_demissao ?? null,
             'enderecos' => $this->pessoa ? $this->pessoa->enderecos->map(function ($endereco) {
                 return [
                     'end_tipo_logradouro' => $endereco->end_tipo_logradouro,
