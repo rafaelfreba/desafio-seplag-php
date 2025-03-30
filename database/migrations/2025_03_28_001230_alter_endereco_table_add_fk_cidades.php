@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('enderecos', function (Blueprint $table) {
-            $table->foreignId('cidade_id')->constrained('cidades');
+        Schema::table('endereco', function (Blueprint $table) {
+           
+            $table->unsignedBigInteger('cid_id')->nullable();
+            $table->foreign('cid_id')->references('cid_id')->on('cidade');
+
         });
     }
 
@@ -22,8 +25,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('enderecos', function (Blueprint $table) {
-            $table->dropForeign(['cidade_id']);
-            $table->dropColumn('cidade_id');
+            $table->dropForeign(['cid_id']);
+            $table->dropColumn('cid_id');
         });
     }
 };

@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('foto_pessoa', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('pessoa_id')->constrained('pessoas');
+            $table->id('fp_id');
+
+            $table->unsignedBigInteger('pes_id')->nullable();
+            $table->foreign('pes_id')->references('pes_id')->on('pessoa');
+
             $table->date('fp_data')->nullable();
             $table->string('fp_bucket', 50)->nullable();
             $table->string('fp_hash', 50)->nullable();

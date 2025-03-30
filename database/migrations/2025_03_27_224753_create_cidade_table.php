@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pessoas', function (Blueprint $table) {
-            $table->id();
-            $table->string('pes_nome', 200);
-            $table->date('pes_data_nascimento');
-            $table->string('pes_sexo', 9);
-            $table->string('pes_mae', 200);
-            $table->string('pes_pai', 200);
+        Schema::create('cidade', function (Blueprint $table) {
+            $table->id('cid_id');
+            $table->string('cid_nome', 200);
+            $table->char('cid_uf', 2)->default('MT');
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pessoas');
+        Schema::dropIfExists('cidades');
     }
 };

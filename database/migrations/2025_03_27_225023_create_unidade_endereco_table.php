@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('endereco_unidade', function (Blueprint $table) {
+        Schema::create('unidade_endereco', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('unidade_id')->constrained('unidades')->onDelete('cascade');
-            $table->foreignId('endereco_id')->constrained('enderecos')->onDelete('cascade');
+            
+            $table->unsignedBigInteger('unid_id')->nullable();
+            $table->foreign('unid_id')->references('unid_id')->on('unidade');
+           
+            $table->unsignedBigInteger('end_id')->nullable();
+            $table->foreign('end_id')->references('end_id')->on('endereco');
+
             $table->timestamps();
         });
     }

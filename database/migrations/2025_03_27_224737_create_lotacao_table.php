@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lotacoes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('pessoa_id')->constrained('pessoas');
-            $table->foreignId('unidade_id')->constrained('unidades');
+        Schema::create('lotacao', function (Blueprint $table) {
+            $table->id('lot_id');
+           
+            $table->unsignedBigInteger('pes_id')->nullable();
+            $table->foreign('pes_id')->references('pes_id')->on('pessoa');
+           
+            $table->unsignedBigInteger('unid_id')->nullable();
+            $table->foreign('unid_id')->references('unid_id')->on('unidade');
+
             $table->date('lot_data_lotacao');
             $table->date('lot_data_remocao')->nullable();
             $table->string('lot_portaria', 100);

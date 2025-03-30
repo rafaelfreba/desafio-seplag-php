@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('unidades', function (Blueprint $table) {
+        Schema::create('servidor_temporario', function (Blueprint $table) {
             $table->id();
-            $table->string('unid_nome', 200);
-            $table->string('unid_sigla', 20);
+            
+            $table->unsignedBigInteger('pes_id')->nullable();
+            $table->foreign('pes_id')->references('pes_id')->on('pessoa');
+            
+            $table->date('st_data_admissao');
+            $table->date('st_data_demissao')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('unidades');
+        Schema::dropIfExists('servidores_temporatios');
     }
 };

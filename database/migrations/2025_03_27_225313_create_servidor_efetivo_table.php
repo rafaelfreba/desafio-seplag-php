@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cidades', function (Blueprint $table) {
+        Schema::create('servidor_efetivo', function (Blueprint $table) {
             $table->id();
-            $table->string('cid_nome', 200);
-            $table->char('cid_uf', 2)->default('MT');
+
+            $table->unsignedBigInteger('pes_id')->nullable();
+            $table->foreign('pes_id')->references('pes_id')->on('pessoa');
+           
+            $table->string('se_matricula', 20);
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cidades');
+        Schema::dropIfExists('efetivos_servidores');
     }
 };
