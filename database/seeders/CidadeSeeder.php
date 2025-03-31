@@ -13,6 +13,6 @@ class CidadeSeeder extends Seeder
      */
     public function run(): void
     {
-        Cidade::factory(2)->create();
+        Cidade::factory()->create();
     }
 }
