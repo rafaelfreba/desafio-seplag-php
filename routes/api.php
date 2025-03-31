@@ -1,9 +1,8 @@
 <?php
 
-use App\Http\Controllers\ApiAuthController;
-use App\Http\Controllers\UnidadeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiAuthController;
 
 
 Route::get('/user', function (Request $request) {
@@ -17,5 +16,11 @@ Route::post('/refresh-token', [ApiAuthController::class, 'refreshToken'])->middl
 // unidades
 require __DIR__ . '/unidades.php';
 
-// servidores
-require __DIR__ . '/servidores.php';
+// servidor efetivo
+require __DIR__ . '/servidor-efetivo.php';
+
+// servidor temporário
+require __DIR__ . '/servidor-temporario.php';
+
+// lotacoes
+require __DIR__ . '/lotacoes.php';
