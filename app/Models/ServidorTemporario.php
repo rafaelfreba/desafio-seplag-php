@@ -24,7 +24,7 @@ class ServidorTemporario extends Model
     {
         return $this->hasOne(Lotacao::class, 'pes_id', 'pes_id');
     }
-    
+
     public function scopeWithRelations()
     {
         return self::with([
@@ -33,6 +33,6 @@ class ServidorTemporario extends Model
             'pessoa.enderecos.cidade',
             'pessoa.lotacoes',
             'pessoa.lotacoes.unidade',
-            'pessoa.fotos']);
+            'pessoa.foto']);
     }
 }

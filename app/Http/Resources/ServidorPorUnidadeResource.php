@@ -13,7 +13,7 @@ class ServidorPorUnidadeResource extends JsonResource
             'nome' => $this->pes_nome,
             'idade' => calculaIdade($this->pes_data_nascimento),
             'unidade' => $this->servidorEfetivo->lotacao->unidade->unid_nome ?? null,
-            'foto' => $this->foto ? asset('caminho_para_fotos/' . $this->fotos->fp_hash) : null,
+            'foto' => $this->foto ? asset('caminho_para_fotos/' . $this->foto->fp_hash) : null,
         ];
     }
 }

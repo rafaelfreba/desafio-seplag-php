@@ -48,10 +48,10 @@ class PessoaResource extends JsonResource
                 ];
             }),
 
-            'fotos' => $this->fotoPessoa ? [
-                'fp_data' => $this->fotoPessoa->fp_data,
-                'fp_link' => 'vem do min io expira em 5min'
-            ] : null,
+            // 'fotos' => $this->fotoPessoa ? [
+            //     'fp_data' => $this->fotoPessoa->fp_data,
+            //     'fp_link' => 'vem do min io expira em 5min'
+            // ] : null,
         ];
     }
 }

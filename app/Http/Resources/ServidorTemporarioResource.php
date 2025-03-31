@@ -57,14 +57,13 @@ class ServidorTemporarioResource extends JsonResource
                     'lot_portaria' => $lotacao->lot_portaria,
                 ];
             }),
-            // 'fotos' => $this->pessoa->fotos->map(function ($foto) {
-            //     return [
-            //         'fp_id' => $foto->fp_id,
-            //         'fp_data' => $foto->fp_data,
-            //         'fp_bucket' => $foto->fp_bucket,
-            //         'fp_hash' => $foto->fp_hash,
-            //     ];
-            // }),
+            'fotos' => [
+                'fp_id' => $this->fp_id,
+                'fp_data' => $this->fp_data,
+                'fp_bucket' => $this->fp_bucket,
+                'fp_hash' => $this->fp_hash,
+                'url' => "http://minio:9000/{$this->fp_bucket}/{$this->fp_hash}",
+            ],
         ];
     }
 }

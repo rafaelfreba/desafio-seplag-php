@@ -32,6 +32,6 @@ class ServidorEfetivo extends Model
             'pessoa.enderecos.cidade',
             'pessoa.lotacoes',
             'pessoa.lotacoes.unidade',
-            'pessoa.fotos']);
+            'pessoa.foto']);
     }
 }
