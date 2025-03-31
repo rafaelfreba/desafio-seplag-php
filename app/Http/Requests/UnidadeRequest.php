@@ -21,7 +21,7 @@ class UnidadeRequest extends FormRequest
             'end_logradouro' => ['required', 'string', 'min:1', 'max:200'],
             'end_numero' => ['required', 'numeric'],
             'end_bairro' => ['required', 'string', 'min:1', 'max:100'],
-            'cidade_id' => ['required', 'numeric', 'min:1', Rule::exists('cidades', 'id')]
+            'cid_id' => ['required', 'numeric', 'min:1', Rule::exists('cidade', 'cid_id')]
         ];
     }
 }
