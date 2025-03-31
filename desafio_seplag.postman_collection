@@ -1,0 +1,682 @@
+{
+	"info": {
+		"_postman_id": "3a071a7a-61d3-4f7f-9b09-a89b4c30b4fe",
+		"name": "Desafio SEPLAG",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18541295"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\" : \"admin@example.com\",\r\n  \"password\" : \"password\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_base}}/login",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh Token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_base}}/refresh-token",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"refresh-token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unidades  - inserir",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"unid_nome\": \"SECRETARIA DE PLANEJAMENTO\",\r\n  \"unid_sigla\": \"SEPLAG\",\r\n  \"end_tipo_logradouro\": \"RUA\",\r\n  \"end_logradouro\": \"D\",\r\n  \"end_numero\": 1,\r\n  \"end_bairro\": \"CPA\",\r\n  \"cid_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_base}}/unidades",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"unidades"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unidades - listar",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_base}}/unidades",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"unidades"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unidades - buscar",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_base}}/unidades/1",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"unidades",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Unidades - atualizar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"unid_nome\": \"SECRETARIA DE SAÚDE\",\r\n  \"unid_sigla\": \"SES\",\r\n  \"end_tipo_logradouro\": \"RUA\",\r\n  \"end_logradouro\": \"S\",\r\n  \"end_numero\": 10,\r\n  \"end_bairro\": \"CONTORNO\",\r\n  \"cid_id\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_base}}/unidades/1",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"unidades",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Servidores - inserir efetivo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"se_matricula\":\"123456/7\",\r\n    \"pes_nome\":\"JOSÉ MARIA DA SILVA\",\r\n    \"pes_data_nascimento\":\"2002-02-02\",\r\n    \"pes_sexo\":\"masculino\",\r\n    \"pes_mae\":\"MARIA DA SILVA\",\r\n    \"pes_pai\":\"JOSÉ DA SILVA\",\r\n    \"end_tipo_logradouro\":\"RUA\",\r\n    \"end_logradouro\":\"BOCAIÚVA\",\r\n    \"end_numero\":10,\r\n    \"end_bairro\":\"CENTRO\",\r\n    \"cid_id\":1,\r\n    \"unid_id\":1,\r\n    \"lot_data_lotacao\":\"2020-05-15\",\r\n    \"lot_data_remocao\":\"\",\r\n    \"lot_portaria\": \"PT GB 1020/2025\",\r\n    \"fp_data\":\"\",\r\n    \"fp_bucket\":\"\",\r\n    \"fp_hash\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_base}}/servidores-efetivos",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"servidores-efetivos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Servidores - listar efetivos",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_base}}/servidores-efetivos",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"servidores-efetivos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Servidor - busca efetivo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_base}}/servidores-efetivos/1",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"servidores-efetivos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Servidores - efetivo atualizar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"se_matricula\":\"765432/1\",\r\n    \"pes_nome\":\"MARIA JOSÉ DA SILVA\",\r\n    \"pes_data_nascimento\":\"2001-01-01\",\r\n    \"pes_sexo\":\"feminino\",\r\n    \"pes_mae\":\"MARIA DA SILVA\",\r\n    \"pes_pai\":\"JOSÉ DA SILVA\",\r\n    \"end_tipo_logradouro\":\"AV\",\r\n    \"end_logradouro\":\"B\",\r\n    \"end_numero\":7,\r\n    \"end_bairro\":\"CENTRO\",\r\n    \"cid_id\":1,\r\n    \"unid_id\":1,\r\n    \"lot_data_lotacao\":\"2025-02-01\",\r\n    \"lot_data_remocao\":\"\",\r\n    \"lot_portaria\": \"PT GB 1020/2025\",\r\n    \"fp_data\":\"\",\r\n    \"fp_bucket\":\"\",\r\n    \"fp_hash\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_base}}/servidores-efetivos/1",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"servidores-efetivos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Servidores - inserir temporário",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"st_data_admissao\":\"2025-03-15\",\r\n    \"st_data_demissao\":\"\",\r\n    \"pes_nome\":\"MARIA JOSÉ DA SILVA\",\r\n    \"pes_data_nascimento\":\"2002-02-02\",\r\n    \"pes_sexo\":\"feminino\",\r\n    \"pes_mae\":\"MARIA DA SILVA\",\r\n    \"pes_pai\":\"JOSÉ DA SILVA\",\r\n    \"end_tipo_logradouro\":\"RUA\",\r\n    \"end_logradouro\":\"B\",\r\n    \"end_numero\":7,\r\n    \"end_bairro\":\"CENTRO\",\r\n    \"cid_id\":1,\r\n    \"unid_id\":1,\r\n    \"lot_data_lotacao\":\"2025-03-29\",\r\n    \"lot_data_remocao\":\"\",\r\n    \"lot_portaria\": \"PT GB 1020/2025\",\r\n    \"fp_data\":\"2025-01-01\",\r\n    \"fp_bucket\":\"\",\r\n    \"fp_hash\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_base}}/servidores-temporarios",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"servidores-temporarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Servidores - listar temporários",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_base}}/servidores-temporarios",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"servidores-temporarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Servidor - busca temporário",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_base}}/servidores-temporarios/1",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"servidores-temporarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lotações - inserir",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pes_id\" : \"1\",\r\n    \"unid_id\" : \"1\",\r\n    \"lot_data_lotacao\" : \"2025-01-02\",\r\n    \"lot_data_remocao\" : \"2025-03-28\",\r\n    \"lot_portaria\" : \"PT GB 8855/25\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_base}}/lotacoes",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"lotacoes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lotações - listar",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_base}}/lotacoes",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"lotacoes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lotações - buscar",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_base}}/lotacoes/1",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"lotacoes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lotações - atualizar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pes_id\" : \"1\",\r\n    \"unid_id\" : \"1\",\r\n    \"lot_data_lotacao\" : \"2024-03-03\",\r\n    \"lot_data_remocao\" : \"2025-02-01\",\r\n    \"lot_portaria\" : \"PT GB 5555/25\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_base}}/lotacoes/1",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"lotacoes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar servidores efetivos da unidade",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_base}}/servidores-efetivos/?unid_id=1",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"servidores-efetivos",
+						""
+					],
+					"query": [
+						{
+							"key": "unid_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Endereço funcional por nome servidor efetivo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url_base}}/servidores-efetivos/?nome=maria",
+					"host": [
+						"{{url_base}}"
+					],
+					"path": [
+						"servidores-efetivos",
+						""
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "maria"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "5|OEXN0MDDO9BqKeAb1DHHWWMDCm8mBvXK3vWp0jFj4697a94f",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
