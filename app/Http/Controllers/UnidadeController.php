@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Unidade;
 use App\Services\UnidadeService;
+use Illuminate\Http\JsonResponse;
 use App\Http\Requests\UnidadeRequest;
 use App\Http\Resources\UnidadeResource;
 use App\Http\Resources\UnidadeCollection;
@@ -12,23 +13,46 @@ class UnidadeController extends Controller
 {
     public function __construct(protected UnidadeService $service) {}
 
-    public function index(Unidade $unidades): UnidadeCollection
+    public function index(): UnidadeCollection
     {
-        return $this->service->listar($unidades);
+        return new UnidadeCollection(Unidade::with(['enderecos', 'enderecos.cidade'])->paginate(5));
     }
 
-    public function store(UnidadeRequest $request): UnidadeResource
+    public function store(UnidadeRequest $request): JsonResponse
     {
-        return $this->service->inserir($request->validated());
+        try {
+            $unidade = $this->service->criarUnidade($request);
+
+            return response()->json([
+                'mensagem' => 'Unidade criada com sucesso',
+                'dados' => new UnidadeResource($unidade)
+            ], 201);
+        } catch (\Throwable $th) {
+            return response()->json(['mensagem' => 'Erro na inserção da unidade'], 404);
+        }
     }
 
-    public function show(Unidade $unidade): UnidadeResource
+    public function show(int $unidId): UnidadeResource | JsonResponse
     {
-        return $this->service->buscar($unidade);
+        try {
+            $unidade = Unidade::findOrFail($unidId);
+            return new UnidadeResource($unidade);
+        } catch (\Throwable $th) {
+            return response()->json(['mensagem' => 'Registro não encontrado'], 404);
+        }
     }
 
-    public function update(UnidadeRequest $request, Unidade $unidade): UnidadeResource
+    public function update(UnidadeRequest $request, int $unidId): JsonResponse
     {
-        return $this->service->atualizar($request, $unidade);
+        try {
+            $unidade = $this->service->atualizarUnidade($request, $unidId);
+
+            return response()->json([
+                'mensagem' => 'Unidade atualizada com sucesso',
+                'dados' => new UnidadeResource($unidade)
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['mensagem' => 'Erro na atualização da unidade'], 404);
+        }
     }
 }

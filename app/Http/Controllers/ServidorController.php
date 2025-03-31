@@ -2,17 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\EfetivoServidor;
 use App\Services\ServidorService;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\ServidorRequest;
 use App\Http\Resources\PessoaResource;
 use App\Http\Resources\ServidorResource;
-use Illuminate\Http\Request;
+use App\Services\EfetivoServidorService;
+use App\Services\ServidorTemporarioService;
 
 class ServidorController extends Controller
 {
-    public function __construct(protected ServidorService $service) {}
+    public function __construct(
+        protected ServidorService $service,
+        protected EfetivoServidorService $efetivoServidorService,
+        protected ServidorTemporarioService $servidorTemporarioService,
+    ) {}
 
     public function index(Request $request)
     {
@@ -35,9 +41,13 @@ class ServidorController extends Controller
         return $this->service->buscar($routeName, $servidorId);
     }
 
-    public function update(ServidorRequest $request, EfetivoServidor $servidorEfetivo)
+    public function update(ServidorRequest $request, int $id)
     {
-       //
+        if($request->safe()->se_matricula){
+           return  $this->efetivoServidorService->atualizar($request, $id);
+            // return new ServidorPorUnidadeCollection($servidores);
+        }
+        
     }
 
 }
