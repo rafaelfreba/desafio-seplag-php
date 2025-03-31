@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ApiAuthController;
+use App\Http\Controllers\FotoPessoaController;
+use Illuminate\Support\Facades\Storage;
 
 
 Route::get('/user', function (Request $request) {
@@ -12,6 +14,9 @@ Route::get('/user', function (Request $request) {
 Route::post('/login', [ApiAuthController::class, 'login']);
 
 Route::post('/refresh-token', [ApiAuthController::class, 'refreshToken'])->middleware('auth:sanctum');
+
+
+Route::post('/upload/{pes_id}/foto', [FotoPessoaController::class, 'upload']);
 
 // unidades
 require __DIR__ . '/unidades.php';
