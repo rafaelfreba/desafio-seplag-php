@@ -24,12 +24,12 @@ class Pessoa extends Model
 
     public function servidorEfetivo(): HasOne
     {
-        return $this->hasOne(ServidorEfetivo::class, 'pes_id', 'id');
+        return $this->hasOne(ServidorEfetivo::class, 'pes_id', 'pes_id');
     }
 
     public function servidorTemporario(): HasOne
     {
-        return $this->hasOne(ServidorTemporario::class, 'pes_id', 'id');
+        return $this->hasOne(ServidorTemporario::class, 'pes_id', 'pes_id');
     }
 
     public function enderecos(): BelongsToMany
@@ -42,8 +42,13 @@ class Pessoa extends Model
         return $this->hasMany(Lotacao::class, 'pes_id', 'pes_id');
     }
 
-    public function fotos(): HasMany
+    public function fotos()
     {
-        return $this->hasMany(FotoPessoa::class, 'pes_id', 'pes_id');
+        return $this->hasOne(FotoPessoa::class, 'pes_id', 'pes_id');
+    }
+
+    public function foto()
+    {
+        return $this->hasOne(FotoPessoa::class, 'pes_id', 'pes_id');
     }
 }

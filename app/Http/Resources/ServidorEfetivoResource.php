@@ -57,14 +57,14 @@ class ServidorEfetivoResource extends JsonResource
                     'lot_portaria' => $lotacao->lot_portaria,
                 ];
             }),
-            'fotos' => $this->pessoa->fotos->map(function ($foto) {
-                return [
-                    'fp_id' => $foto->fp_id,
-                    'fp_data' => $foto->fp_data,
-                    'fp_bucket' => $foto->fp_bucket,
-                    'fp_hash' => $foto->fp_hash,
-                ];
-            }),
+            // 'fotos' => $this->pessoa->fotos->map(function ($foto) {
+            //     return [
+            //         'fp_id' => $foto->fp_id,
+            //         'fp_data' => $foto->fp_data,
+            //         'fp_bucket' => $foto->fp_bucket,
+            //         'fp_hash' => $foto->fp_hash,
+            //     ];
+            // }),
         ];
     }
 }

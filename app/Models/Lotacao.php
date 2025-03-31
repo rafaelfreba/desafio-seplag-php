@@ -29,4 +29,14 @@ class Lotacao extends Model
     {
         return $this->belongsTo(Unidade::class, 'unid_id', 'unid_id');
     }
+
+    public function servidorEfetivo()
+    {
+        return $this->belongsTo(ServidorEfetivo::class, 'pes_id', 'pes_id');
+    }
+
+    public function servidorTemporario()
+    {
+        return $this->belongsTo(ServidorTemporario::class, 'pes_id', 'pes_id');
+    }
 }

@@ -19,8 +19,13 @@ class FotoPessoa extends Model
         'fp_hash'
     ];
 
-    public function pessoa(): BelongsTo
+    // public function pessoa(): BelongsTo
+    // {
+    //     return $this->belongsTo(Pessoa::class);
+    // }
+
+    public function pessoa()
     {
-        return $this->belongsTo(Pessoa::class);
+        return $this->belongsTo(Pessoa::class, 'pes_id', 'pes_id');
     }
 }

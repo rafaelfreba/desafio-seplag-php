@@ -15,9 +15,10 @@ class TokenService
             'view-servidores-efetivos',
             'view-lotacoes'
         ];
-        $expiration = now()->addMinutes(5);
+        // $expiration = now()->addMinutes(5);
 
-        return $user->createToken('auth-token', $abilities, $expiration);
+        // return $user->createToken('auth-token', $abilities, $expiration);
+        return $user->createToken('auth-token', $abilities);
     }
 
     public function refreshToken(User $user): NewAccessToken

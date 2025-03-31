@@ -11,6 +11,7 @@ use App\Models\ServidorEfetivo;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ServidorEfetivoRequest;
 use App\Http\Resources\EnderecoResource;
+use App\Http\Resources\ServidorPorUnidadeCollection;
 use App\Models\Unidade;
 use App\Models\UnidadeEndereco;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -116,9 +117,24 @@ class ServidorEfetivoService
 
     public function retornaServidoresDaUnidade(int $unidId)
     {
-       return 'lista de servidores da unidade com nome, idade, unidade e fotografia';
+        $pessoas = Pessoa::whereHas('servidorEfetivo.lotacao.unidade', function ($query) use ($unidId) {
+            $query->where('unid_id', $unidId);
+        })
+        ->with([
+            'servidorEfetivo.lotacao.unidade' => function ($query) {
+                $query->select('unid_id', 'unid_nome');
+            },
+            'foto' => function ($query) {
+                $query->select('pes_id', 'fp_hash');
+            }
+        ])
+        ->select('pes_id', 'pes_nome', 'pes_data_nascimento')
+        ->distinct()
+        ->paginate(5);
+
+    return new ServidorPorUnidadeCollection($pessoas);
     }
-    
+
     public function retornaEnderecoFuncionalServidor(string $nome)
     {
         $pessoa = Pessoa::where('pes_nome', 'like', '%' . $nome . '%')->first();
@@ -126,17 +142,17 @@ class ServidorEfetivoService
         if (!$pessoa) {
             throw new ModelNotFoundException('Servidor efetivo não encontrado');
         }
-    
+
         $lotacao = Lotacao::where('pes_id', $pessoa->pes_id)->latest()->first();
         if (!$lotacao) {
             throw new ModelNotFoundException('Lotação não encontrada');
         }
-    
+
         $unidade = Unidade::with('enderecos.cidade')->find($lotacao->unid_id);
         if (!$unidade) {
             throw new ModelNotFoundException('Unidade não encontrada');
         }
-    
+
         return EnderecoResource::collection($unidade->enderecos);
     }
 }

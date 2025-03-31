@@ -16,17 +16,15 @@ class ServidorEfetivoController extends Controller
 
     public function index(Request $request)
     {
-        if(!$request->query('unid_id') && !$request->query('nome')){
-            return new ServidorEfetivoCollection(ServidorEfetivo::withRelations()->paginate(5));
+        if($request->filled('unid_id')){
+            return $this->service->retornaServidoresDaUnidade($request->unid_id);
         }
 
-        // if($request->filled('unid_id')){
-        //     return $this->service->retornaServidoresDaUnidade($request->unid_id);        
-        // }
-        
         if($request->filled('nome')){
-            return $this->service->retornaEnderecoFuncionalServidor($request->nome);        
+            return $this->service->retornaEnderecoFuncionalServidor($request->nome);
         }
+
+        return new ServidorEfetivoCollection(ServidorEfetivo::withRelations()->paginate(5));
     }
 
     public function store(ServidorEfetivoRequest $request): ServidorEfetivoResource | JsonResponse
