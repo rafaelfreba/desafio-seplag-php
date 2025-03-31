@@ -4,76 +4,63 @@ namespace App\Services;
 
 use App\Models\Unidade;
 use App\Models\Endereco;
+use App\Models\UnidadeEndereco;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use App\Http\Resources\UnidadeResource;
-use App\Http\Resources\UnidadeCollection;
+use App\Http\Requests\UnidadeRequest;
 
 class UnidadeService
 {
-    public function listar($unidades): UnidadeCollection
-    {
-        return new UnidadeCollection($unidades::with(['enderecos', 'enderecos.cidade'])->paginate(5));
-    }
-
-    public function inserir(array $dados): UnidadeResource | array
+    public function criarUnidade(UnidadeRequest $request): Unidade
     {
         try {
-
             DB::beginTransaction();
-            
-            $unidade = Unidade::create($dados);
 
-            $endereco = Endereco::create($dados);
+            $unidade = Unidade::create($request->validated());
 
-            $unidade->enderecos()->attach($endereco->id);
+            $endereco = Endereco::create($request->validated());
+
+            UnidadeEndereco::updateOrCreate([
+                'unid_id' => $unidade->unid_id,
+                'end_id' => $endereco->end_id
+            ]);
 
             DB::commit();
 
-            return new UnidadeResource($unidade->load(['enderecos', 'enderecos.cidade']));
-            
+            return $unidade;
         } catch (\Throwable $th) {
-
-            Log::error('Erro na inserção de unidade: ' . $th->getMessage());
-
-            return ['mensagem' => 'Erro na inserção de unidade'];
+            DB::rollBack();
+            throw $th;
         }
     }
 
-    public function buscar($unidade): UnidadeResource
-    {
-        return new UnidadeResource($unidade);
-    }
-
-    public function atualizar($request, $unidade): UnidadeResource | array
+    public function atualizarUnidade(UnidadeRequest $request, int $unidId): Unidade
     {
         try {
-
             DB::beginTransaction();
 
-            $unidade->update($request->validated());
+            $unidade = Unidade::findOrFail($unidId);
+            $unidade->update([
+                'unid_nome' => $request->safe()->unid_nome,
+                'unid_sigla' => $request->safe()->unid_sigla
+            ]);
 
-            $endereco = Endereco::updateOrCreate(
-                [
-                    'end_tipo_logradouro' => $request->safe()->end_tipo_logradouro,
-                    'end_logradouro' => $request->safe()->end_logradouro,
-                    'end_numero' => $request->safe()->end_numero,
-                    'end_bairro' => $request->safe()->end_bairro,
-                    'cidade_id' => $request->safe()->cidade_id,
-                ]
-            );
-
-            $unidade->enderecos()->sync([$endereco->id]);
+            $endId = UnidadeEndereco::where('unid_id', $unidade->unid_id)->latest()->first()->end_id;
+            $endereco = Endereco::findOrFail($endId);
+            $endereco->update([
+                'end_id' => $endId,
+                'end_tipo_logradouro' => $request->safe()->end_tipo_logradouro,
+                'end_logradouro' => $request->safe()->end_logradouro,
+                'end_numero' => $request->safe()->end_numero,
+                'end_bairro' => $request->safe()->end_bairro,
+                'cid_id' => $request->safe()->cid_id
+            ]);
 
             DB::commit();
 
-            return new UnidadeResource($unidade->load(['enderecos', 'enderecos.cidade']));
-
+            return $unidade;
         } catch (\Throwable $th) {
-
-            Log::error('Erro na atualização de unidade: ' . $th->getMessage());
-
-            return ['mensagem' => 'Erro na atualização de unidade'];
+            DB::rollBack();
+            throw $th;
         }
     }
 }

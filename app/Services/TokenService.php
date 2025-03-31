@@ -9,7 +9,12 @@ class TokenService
 {
     public function generateToken(User $user): NewAccessToken
     {
-        $abilities = $user->is_admin ? ['*'] : ['view-unidades'];
+        $abilities = $user->is_admin ? ['*'] : [
+            'view-unidades',
+            'view-servidores-temporarios',
+            'view-servidores-efetivos',
+            'view-lotacoes'
+        ];
         $expiration = now()->addMinutes(5);
 
         return $user->createToken('auth-token', $abilities, $expiration);

@@ -7,23 +7,26 @@ use App\Models\Lotacao;
 use App\Models\Endereco;
 use App\Models\FotoPessoa;
 use App\Models\PessoaEndereco;
-use App\Models\ServidorTemporario;
+use App\Models\ServidorEfetivo;
 use Illuminate\Support\Facades\DB;
-use App\Http\Requests\ServidorTemporarioRequest;
+use App\Http\Requests\ServidorEfetivoRequest;
+use App\Http\Resources\EnderecoResource;
+use App\Models\Unidade;
+use App\Models\UnidadeEndereco;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class ServidorTemporarioService
+class ServidorEfetivoService
 {
-    public function criarServidorTemporario(ServidorTemporarioRequest $request): ServidorTemporario
+    public function criarServidorEfetivo(ServidorEfetivoRequest $request): ServidorEfetivo
     {
         try {
             DB::beginTransaction();
 
             $pessoa = Pessoa::create($request->validated());
 
-            $servidor = ServidorTemporario::create([
+            $servidor = ServidorEfetivo::create([
                 'pes_id' => $pessoa->pes_id,
-                'st_data_admissao' => $request->safe()->st_data_admissao,
-                'st_data_demissao' => $request->safe()->st_data_demissao
+                'se_matricula' => $request->safe()->se_matricula
             ]);
 
             $endereco = Endereco::create($request->validated());
@@ -57,15 +60,14 @@ class ServidorTemporarioService
         }
     }
 
-    public function atualizarServidorTemporario(ServidorTemporarioRequest $request, string $servidorId): ServidorTemporario
+    public function atualizarServidorEfetivo(ServidorEfetivoRequest $request, string $servidorId): ServidorEfetivo
     {
         try {
             DB::beginTransaction();
 
-            $servidor = ServidorTemporario::findOrFail($servidorId);
+            $servidor = ServidorEfetivo::findOrFail($servidorId);
             $servidor->update([
-                'st_data_admissao' => $request->safe()->st_data_admissao,
-                'st_data_demissao' => $request->safe()->st_data_demissao
+                'se_matricula' => $request->safe()->se_matricula
             ]);
 
             $pessoa = Pessoa::findOrFail($servidor->pes_id);
@@ -110,5 +112,31 @@ class ServidorTemporarioService
             DB::rollBack();
             throw $th;
         }
+    }
+
+    public function retornaServidoresDaUnidade(int $unidId)
+    {
+       return 'lista de servidores da unidade com nome, idade, unidade e fotografia';
+    }
+    
+    public function retornaEnderecoFuncionalServidor(string $nome)
+    {
+        $pessoa = Pessoa::where('pes_nome', 'like', '%' . $nome . '%')->first();
+
+        if (!$pessoa) {
+            throw new ModelNotFoundException('Servidor efetivo não encontrado');
+        }
+    
+        $lotacao = Lotacao::where('pes_id', $pessoa->pes_id)->latest()->first();
+        if (!$lotacao) {
+            throw new ModelNotFoundException('Lotação não encontrada');
+        }
+    
+        $unidade = Unidade::with('enderecos.cidade')->find($lotacao->unid_id);
+        if (!$unidade) {
+            throw new ModelNotFoundException('Unidade não encontrada');
+        }
+    
+        return EnderecoResource::collection($unidade->enderecos);
     }
 }
