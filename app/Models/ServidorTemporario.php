@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ServidorTemporario extends Model
 {
-    protected $table = 'servidores_temporarios';
+    protected $table = 'servidor_temporario';
 
     protected $fillable = [
-        'pessoa_id',
+        'pes_id',
         'st_data_admissao',
         'st_data_demissao'
     ];
 
     public function pessoa(): BelongsTo
     {
-        return $this->belongsTo(Pessoa::class);
-    }
+        return $this->belongsTo(Pessoa::class ,'pes_id', 'pes_id');
+    }  
 
     public function scopeWithRelations()
     {

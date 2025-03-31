@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Lotacao extends Model
 {
-    protected $table = 'lotacoes';
+    protected $table = 'lotacao';
+
+    protected $primaryKey = 'lot_id';
 
     protected $fillable = [
-        'pessoa_id',
-        'unidade_id',
+        'lot_id',
+        'pes_id',
+        'unid_id',
         'lot_data_lotacao',
         'lot_data_remocao',
         'lot_portaria'
@@ -19,11 +22,11 @@ class Lotacao extends Model
 
     public function pessoa(): BelongsTo
     {
-        return $this->belongsTo(Pessoa::class);
+        return $this->belongsTo(Pessoa::class, 'pes_id', 'pes_id');
     }
 
     public function unidade(): BelongsTo
     {
-        return $this->belongsTo(Unidade::class);
+        return $this->belongsTo(Unidade::class, 'unid_id', 'unid_id');
     }
 }

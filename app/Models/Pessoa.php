@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Pessoa extends Model
 {
-    protected $table = 'pessoas';
+    protected $table = 'pessoa';
+
+    protected $primaryKey = 'pes_id';
 
     protected $fillable = [
+        'pes_id',
         'pes_nome',
         'pes_data_nascimento',
         'pes_sexo',
@@ -21,26 +24,26 @@ class Pessoa extends Model
 
     public function servidorEfetivo(): HasOne
     {
-        return $this->hasOne(EfetivoServidor::class, 'pessoa_id', 'id');
+        return $this->hasOne(ServidorEfetivo::class, 'pes_id', 'id');
     }
 
     public function servidorTemporario(): HasOne
     {
-        return $this->hasOne(ServidorTemporario::class, 'pessoa_id', 'id');
+        return $this->hasOne(ServidorTemporario::class, 'pes_id', 'id');
     }
 
     public function enderecos(): BelongsToMany
     {
-        return $this->belongsToMany(Endereco::class);
+        return $this->belongsToMany(Endereco::class, 'pessoa_endereco', 'pes_id', 'end_id');
     }
 
     public function lotacoes(): HasMany
     {
-        return $this->hasMany(Lotacao::class);
+        return $this->hasMany(Lotacao::class, 'pes_id', 'pes_id');
     }
 
     public function fotos(): HasMany
     {
-        return $this->hasMany(FotoPessoa::class);
+        return $this->hasMany(FotoPessoa::class, 'pes_id', 'pes_id');
     }
 }
