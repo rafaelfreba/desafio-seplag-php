@@ -42,11 +42,6 @@ class Pessoa extends Model
         return $this->hasMany(Lotacao::class, 'pes_id', 'pes_id');
     }
 
-    // public function fotos()
-    // {
-    //     return $this->hasOne(FotoPessoa::class, 'pes_id', 'pes_id');
-    // }
-
     public function foto()
     {
         return $this->hasOne(FotoPessoa::class, 'pes_id', 'pes_id');

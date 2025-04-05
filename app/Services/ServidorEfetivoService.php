@@ -125,7 +125,7 @@ class ServidorEfetivoService
                 $query->select('unid_id', 'unid_nome');
             },
             'foto' => function ($query) {
-                $query->select('pes_id', 'fp_hash');
+                $query->select('pes_id', 'fp_bucket')->orderBy('fp_data', 'desc');
             }
         ])
         ->select('pes_id', 'pes_nome', 'pes_data_nascimento')

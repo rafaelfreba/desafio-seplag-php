@@ -13,12 +13,12 @@ class TokenService
             'view-unidades',
             'view-servidores-temporarios',
             'view-servidores-efetivos',
-            'view-lotacoes'
+            'view-lotacoes',
+            'view-fotos'
         ];
-        // $expiration = now()->addMinutes(5);
+        $expiration = now()->addMinutes(5);
 
-        // return $user->createToken('auth-token', $abilities, $expiration);
-        return $user->createToken('auth-token', $abilities);
+        return $user->createToken('auth-token', $abilities, $expiration);
     }
 
     public function refreshToken(User $user): NewAccessToken

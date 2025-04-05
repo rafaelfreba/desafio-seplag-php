@@ -35,10 +35,6 @@ class ServidorEfetivoRequest extends FormRequest
             'lot_data_lotacao' => ['required', 'date', 'before_or_equal:' . date('Y-m-d')],
             'lot_data_remocao' => ['nullable', 'date', 'after:lot_data_lotacao'],
             'lot_portaria' => ['required', 'string', 'min:1', 'max:20'],
-            //foto pessoa
-            'fp_data' => ['nullable', 'date'],
-            'fp_bucket' => ['nullable', 'string', 'min:1', 'max:100'],
-            'fp_hash' => ['nullable', 'string', 'min:1', 'max:100']
         ];
     }
 }
