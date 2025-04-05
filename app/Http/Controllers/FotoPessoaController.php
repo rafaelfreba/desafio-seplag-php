@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\FotoPessoa;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\FotoPessoaRequest;
-use Illuminate\Http\Request;
 
 class FotoPessoaController extends Controller
 {
