@@ -1,6 +1,6 @@
-# DESAFIO TÉCNICO SEPLAG MT PARA DESENVOLVEDOR PHP/LARAVEL 
-
-## API Laravel 12, PostgreSQL 15, MinIO e Nginx para SEPLAG MT
+# DESAFIO TÉCNICO SEPLAG-MT
+## Número da inscrição: 8837 - Perfil: DESENVOLVEDOR PHP - SÊNIOR
+### API Laravel 12, PostgreSQL 15, MinIO e Nginx para SEPLAG MT
 
 Este projeto é uma API desenvolvida com Laravel 12, utilizando PostgreSQL 15 como banco de dados, MinIO para armazenamento de arquivos e Nginx como servidor web.
 
