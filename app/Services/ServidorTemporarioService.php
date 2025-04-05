@@ -41,13 +41,6 @@ class ServidorTemporarioService
                 'lot_portaria' => $request->safe()->lot_portaria
             ]);
 
-            FotoPessoa::create([
-                'pes_id' => $pessoa->pes_id,
-                'fp_data' => $request->safe()->fp_data,
-                'fp_bucket' => $request->safe()->fp_bucket,
-                'fp_hash' => $request->safe()->fp_hash
-            ]);
-
             DB::commit();
 
             return $servidor;
@@ -94,13 +87,6 @@ class ServidorTemporarioService
                 'lot_data_lotacao' => $request->safe()->lot_data_lotacao,
                 'lot_data_remocao' => $request->safe()->lot_data_remocao,
                 'lot_portaria' => $request->safe()->lot_portaria
-            ]);
-
-            $foto = FotoPessoa::where('pes_id', $pessoa->pes_id)->latest()->first();
-            $foto->update([
-                'fp_data' => $request->safe()->fp_data,
-                'fp_bucket' => $request->safe()->fp_bucket,
-                'fp_hash' => $request->safe()->fp_hash
             ]);
 
             DB::commit();
