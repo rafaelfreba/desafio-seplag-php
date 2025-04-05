@@ -31,16 +31,19 @@ Este projeto é uma API desenvolvida com Laravel 12, utilizando PostgreSQL 15 co
     docker-compose up -d --build
     ```
 
-4.  **Importar Coleção do Postman:**
+4.  **Importar Coleção do Insomnia:**
 
-    * Abra o Postman.
-    * Importe a coleção de rotas da API, localizada na raiz do projeto **(desafio_seplag.postman_collection)**.
+    * Abra o Insomnia.
+    * Importe a coleção de rotas da API, localizada na raiz do projeto **(Insomnia_2025-04-05.har)**.
 
-      Obs.: caso esteja rodando os containeres em uma VM altere a variável de ambiente **url_base** para o ip da VM (ex.: http://192.158.1.38:8080/api)
+      Obs.: caso esteja rodando os containeres em uma VM altere as variáveis de ambiente no arquivo ``.env`` conforme imagem:
+      ![alt text](image.png)
 
 5.  **Testar as Rotas da API:**
 
-    * Utilize o Postman para enviar requisições para as rotas da API e verificar o funcionamento.
+    * Utilize o Insomnia para enviar requisições para as rotas da API e verificar o funcionamento.
+    1) Gere o token na rota login;
+    2) Antes de realizar a requisição ajuste a autenticação passando o Bearer Token.
 
 ## Informações Adicionais
 
