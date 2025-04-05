@@ -9,9 +9,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('servidores-efetivos', [ServidorEfetivoController::class, 'index'])
     ->middleware('ability:view-servidores-efetivos');
 
-    // Route::get('servidores-efetivos/{unid_id?}', [ServidorEfetivoController::class, 'retornaServidoresDaUnidade'])
-    // ->middleware('ability:view-servidores')->name('efetivos');
-
     Route::get('servidores-efetivos/{id}', [ServidorEfetivoController::class, 'show'])
     ->middleware('ability:view-servidores-efetivos');
 
@@ -19,6 +16,6 @@ Route::middleware('auth:sanctum')->group(function () {
     ->middleware('ability:create-servidores-efetivos');
 
     Route::put('servidores-efetivos/{id}', [ServidorEfetivoController::class, 'update'])
-    ->middleware('ability:update-servidores-efetivos');      
+    ->middleware('ability:update-servidores-efetivos');
 
 });
